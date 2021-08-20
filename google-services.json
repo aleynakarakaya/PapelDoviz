@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "384071797045",
+    "project_id": "papeldoviz-96f2d",
+    "storage_bucket": "papeldoviz-96f2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384071797045:android:bed4948ebfbeae24b1647c",
+        "android_client_info": {
+          "package_name": "com.example.papeldoviz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384071797045-8fkekolfel34qam9i8q4ts6rehnp2ggb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8ib1qLnntT_2AoEkxCTS80ndG2d7XuuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384071797045-8fkekolfel34qam9i8q4ts6rehnp2ggb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
