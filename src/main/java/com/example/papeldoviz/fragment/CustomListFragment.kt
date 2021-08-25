@@ -1,4 +1,4 @@
-package com.example.papeldoviz.fragment
+    package com.example.papeldoviz.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,13 +25,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 //base url "https://api.nomics.com/v1/
 class CustomListFragment : Fragment() {
 
-    lateinit var myAdapter: MyAdapter
+    private var myAdapter : MyAdapter? = null
     lateinit var linearLayoutManager: LinearLayoutManager
+    lateinit var liste: List<MyDataItem>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         getMyData()
 
@@ -55,17 +55,15 @@ class CustomListFragment : Fragment() {
 
 
                 val responseBody = response.body()!!
-                //userList = responseBody
-                //tempArrayList.addAll(liste)
+                liste = responseBody
                 recyclerview_users.setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(requireContext())
                 recyclerview_users.layoutManager = linearLayoutManager
-                myAdapter = MyAdapter(activity!!.baseContext, responseBody!!)
-                myAdapter.notifyDataSetChanged()
+                myAdapter = MyAdapter(requireContext(), responseBody)
                 recyclerview_users.adapter = myAdapter
 
 
-                //recyclerview_users.adapter!!.notifyDataSetChanged()
+            //recyclerview_users.adapter!!.notifyDataSetChanged()
             }
 
             override fun onFailure(call: Call<List<MyDataItem>?>, t: Throwable) {

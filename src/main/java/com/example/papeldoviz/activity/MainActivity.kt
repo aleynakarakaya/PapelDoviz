@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
+            //deneme
+
         val loginFragment = LoginFragment()
         fragmentTransaction.replace(R.id.fragmentContainer, loginFragment).commit()
 

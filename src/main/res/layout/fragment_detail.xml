@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image_movie2"
+        android:id="@+id/coinLogo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,24 +15,30 @@
         android:scaleType="fitCenter" />
 
     <TextView
-        android:id="@+id/userId2"
+        android:id="@+id/coinName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image_movie2"
+        android:layout_below="@+id/coinLogo2"
         android:layout_centerHorizontal="true"
-        android:layout_margin="7dp"
-        android:text="User Id"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+        android:text="Coin Name"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/title2"
+        android:id="@+id/coinFiatCurrency2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userId2"
+        android:layout_below="@+id/coinName2"
         android:layout_centerHorizontal="true"
-        android:layout_margin="7dp"
-        android:text="Title"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="7dp"
+        android:text="Coin Fiat Currency"
         android:textSize="18sp" />
 
 </RelativeLayout>

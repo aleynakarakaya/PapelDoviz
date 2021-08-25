@@ -18,7 +18,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/image_movie"
+                android:id="@+id/coinLogo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@mipmap/ic_launcher" />
@@ -32,19 +32,19 @@
 
 
                 <TextView
-                    android:id="@+id/userId"
+                    android:id="@+id/coinName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Id"
+                    android:text="Coin Name"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/coinFiatCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="Coin Fiat Currency"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="normal" />
