@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         val loginFragment = LoginFragment()
         fragmentTransaction.replace(R.id.fragmentContainer, loginFragment).commit()
 
+        //yorum satırı düşecek mi bakalım deyenelim görelim
     }
 
 
