@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.papeldoviz.R
 import com.example.papeldoviz.fragment.CustomListFragment
+import com.example.papeldoviz.fragment.DetailFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class ListActivity : AppCompatActivity() {
@@ -42,4 +43,9 @@ class ListActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+
+
 }
+
+

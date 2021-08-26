@@ -112,8 +112,8 @@ class LoginFragment : Fragment() {
                     if(kullanici.isEmailVerified){
                         Toast.makeText(activity,"Mail onaylandı giriş yapabilirsiniz", Toast.LENGTH_SHORT).show()
                         var intent= Intent(getActivity(), ListActivity::class.java)
-                        startActivity(intent)
                         activity!!.finish()
+                        startActivity(intent)
 
 
                     }else{

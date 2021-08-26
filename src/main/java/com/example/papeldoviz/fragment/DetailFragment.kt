@@ -25,7 +25,7 @@ import java.util.*
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
-     private var binding: FragmentDetailBinding? = null
+    private var binding: FragmentDetailBinding? = null
     private var coinId: String? = null
     private var coinLogo: String? = null
     private var coinName: String? = null

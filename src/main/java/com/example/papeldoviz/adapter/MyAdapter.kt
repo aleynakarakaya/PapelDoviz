@@ -1,5 +1,6 @@
 package com.example.papeldoviz.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,38 +8,40 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.papeldoviz.R
+import com.example.papeldoviz.fragment.CustomListFragment
 import com.example.papeldoviz.fragment.DetailFragment
 import com.example.papeldoviz.servis.MyDataItem
+import com.google.android.gms.dynamic.SupportFragmentWrapper
 import kotlinx.android.synthetic.main.row_item.view.*
 
 class MyAdapter(
         val context: Context,
         private val userList: List<MyDataItem>,
+        private val localSupportFragmentManager: FragmentManager
 ) : RecyclerView.Adapter<RcViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RcViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemView = layoutInflater.inflate(R.layout.row_item, parent, false)
-        return RcViewHolder(itemView)
+        return RcViewHolder(itemView, localSupportFragmentManager)
     }
 
-    override fun getItemCount(): Int  {
+    override fun getItemCount(): Int {
         return userList.size
     }
 
 
     override fun onBindViewHolder(holder: RcViewHolder, position: Int) {
-        Log.wtf("bind oncesi",position.toString())
 
         holder.bind(userList[position])
-
-        Log.wtf("bind sonrası",position.toString())
-
 
     }
 
@@ -47,7 +50,7 @@ class MyAdapter(
 
 }
 
-class RcViewHolder(localItemView: View) : RecyclerView.ViewHolder(localItemView) {
+class RcViewHolder(localItemView: View, private val sprfrg: FragmentManager?) : RecyclerView.ViewHolder(localItemView) {
     fun bind(myDataItem: MyDataItem?) {
         Log.wtf("Tag Tag Tag", myDataItem.toString())
 
@@ -63,7 +66,7 @@ class RcViewHolder(localItemView: View) : RecyclerView.ViewHolder(localItemView)
         val layout = itemView.findViewById<CardView>(R.id.cView)
 
         layout.setOnClickListener {
-            (itemView.context as? FragmentActivity)?.supportFragmentManager?.beginTransaction()?.replace(
+            sprfrg?.beginTransaction()?.replace(
                     R.id.fragmentContainer2,
                     DetailFragment.newInstance(
                             coinId = myDataItem?.id,
@@ -73,6 +76,10 @@ class RcViewHolder(localItemView: View) : RecyclerView.ViewHolder(localItemView)
             )?.addToBackStack(null)?.commit()
         }
 
+
+        //sprfrg?.popBackStack("attach", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+
         name.apply {
             this.text = myDataItem?.name
         }
@@ -81,10 +88,7 @@ class RcViewHolder(localItemView: View) : RecyclerView.ViewHolder(localItemView)
             this.text = myDataItem?.currency
         }
 
-
-        //glide
         Glide.with(itemView.context).load(myDataItem?.logo_url).placeholder(R.drawable.ic_launcher_background).into(logo)
-
 
 
     }

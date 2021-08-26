@@ -59,7 +59,7 @@ class CustomListFragment : Fragment() {
                 recyclerview_users.setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(requireContext())
                 recyclerview_users.layoutManager = linearLayoutManager
-                myAdapter = MyAdapter(requireContext(), responseBody)
+                myAdapter = MyAdapter(requireContext(), responseBody, activity!!.supportFragmentManager)
                 recyclerview_users.adapter = myAdapter
 
 
@@ -85,6 +85,8 @@ class CustomListFragment : Fragment() {
     companion object {
         const val BASE_URL = "https://api.nomics.com/v1/"
     }
+
+
 
 
 }
