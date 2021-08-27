@@ -1,6 +1,5 @@
 package com.example.papeldoviz.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,18 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.papeldoviz.R
-import com.example.papeldoviz.fragment.CustomListFragment
 import com.example.papeldoviz.fragment.DetailFragment
 import com.example.papeldoviz.servis.MyDataItem
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import kotlinx.android.synthetic.main.row_item.view.*
 
 class MyAdapter(
@@ -44,13 +38,12 @@ class MyAdapter(
         holder.bind(userList[position])
 
     }
-
-    //glide
     //holder.itemView.image_movie?.gorselIndir(userList.get(position).logo_url, placeholderYap(holder.itemView.context))
 
 }
 
-class RcViewHolder(localItemView: View, private val sprfrg: FragmentManager?) : RecyclerView.ViewHolder(localItemView) {
+class RcViewHolder(localItemView: View,
+                   private val sprfrg: FragmentManager?) : RecyclerView.ViewHolder(localItemView) {
     fun bind(myDataItem: MyDataItem?) {
         Log.wtf("Tag Tag Tag", myDataItem.toString())
 
@@ -66,8 +59,8 @@ class RcViewHolder(localItemView: View, private val sprfrg: FragmentManager?) : 
         val layout = itemView.findViewById<CardView>(R.id.cView)
 
         layout.setOnClickListener {
-            sprfrg?.beginTransaction()?.replace(
-                    R.id.fragmentContainer2,
+            sprfrg?.beginTransaction()?.add(
+                    R.id.baseFragmentContainer,
                     DetailFragment.newInstance(
                             coinId = myDataItem?.id,
                             coinLogo = myDataItem?.logo_url,

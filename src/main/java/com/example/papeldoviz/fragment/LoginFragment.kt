@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
             requireActivity()
                 .supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragmentContainer, RegisterFragment()).addToBackStack(null).commit()
+                .add(R.id.baseFragmentContainer, RegisterFragment()).addToBackStack(null).commit()
 
         }
         //Giriş butonunun işlevi için fonksiyon tanımlıyoruz.

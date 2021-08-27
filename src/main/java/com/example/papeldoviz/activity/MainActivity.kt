@@ -1,24 +1,26 @@
 package com.example.papeldoviz.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.papeldoviz.R
 import com.example.papeldoviz.fragment.LoginFragment
+import java.lang.ref.WeakReference
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        //deneme
-
         val loginFragment = LoginFragment()
-        fragmentTransaction.replace(R.id.fragmentContainer, loginFragment).commit()
+        fragmentTransaction.replace(R.id.baseFragmentContainer, loginFragment).commit()
     }
+
+    override fun myLayoutRes() = R.layout.activity_base
 
     /*override fun onBackPressed(){
         val fm =  supportFragmentManager

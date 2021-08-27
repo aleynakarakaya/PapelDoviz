@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 //f878bb1bd8cf652e0f4b2f50a69872b7b352dd18
 //base url "https://api.nomics.com/v1/
-class CustomListFragment : Fragment() {
+class CustomListFragment : Fragment(R.layout.fragment_list) {
 
     private var myAdapter : MyAdapter? = null
     lateinit var linearLayoutManager: LinearLayoutManager
@@ -85,8 +85,5 @@ class CustomListFragment : Fragment() {
     companion object {
         const val BASE_URL = "https://api.nomics.com/v1/"
     }
-
-
-
 
 }

@@ -5,23 +5,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.papeldoviz.R
 import com.example.papeldoviz.fragment.CustomListFragment
 import com.example.papeldoviz.fragment.DetailFragment
 import com.google.firebase.auth.FirebaseAuth
+import java.text.FieldPosition
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : BaseActivity() {
     private lateinit var auth : FirebaseAuth
+    private val BACK_STACK_ROOT_TAG = "root_fragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list)
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
         val listFragment = CustomListFragment()
-        fragmentTransaction.replace(R.id.fragmentContainer2, listFragment).commit()
+        fragmentTransaction.replace(R.id.baseFragmentContainer, listFragment).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -43,6 +46,10 @@ class ListActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+    override fun myLayoutRes() = R.layout.activity_base
+
+
 
 
 
