@@ -15,7 +15,7 @@ data class MyDataItem(
     val logo_url: String,
     val market_cap: String,
     val market_cap_dominance: String,
-    val max_supply: String,
+    val max_supply: String? = null, //first-initialize
     val name: String,
     val num_exchanges: String,
     val num_pairs: String,
@@ -28,3 +28,9 @@ data class MyDataItem(
     val status: String,
     val symbol: String
 )
+
+
+
+
+//Aynı modelleri dönen json responselarda herhangi bir alanı (örneğin yukarıdakilerden max_supply)
+// bazı yerlerde kullanacaksan ama bazı yerlerde kullanmayacaksan first initialize kavramını gerçekleştirerek kullanmalısın.

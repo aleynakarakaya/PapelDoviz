@@ -1,7 +1,6 @@
 package com.example.papeldoviz.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +13,14 @@ import com.bumptech.glide.Glide
 import com.example.papeldoviz.R
 import com.example.papeldoviz.fragment.DetailFragment
 import com.example.papeldoviz.servis.MyDataItem
+import com.example.papeldoviz.util.gorselIndir
+import com.example.papeldoviz.util.placeholderYap
 import kotlinx.android.synthetic.main.row_item.view.*
 
 class MyAdapter(
         val context: Context,
         private val userList: List<MyDataItem>,
+
         private val localSupportFragmentManager: FragmentManager
 ) : RecyclerView.Adapter<RcViewHolder>() {
 
@@ -32,25 +34,19 @@ class MyAdapter(
         return userList.size
     }
 
-
     override fun onBindViewHolder(holder: RcViewHolder, position: Int) {
-
         holder.bind(userList[position])
-
+        holder.itemView.coinLogo?.gorselIndir(userList.get(position).logo_url, placeholderYap(holder.itemView.context))
     }
-    //holder.itemView.image_movie?.gorselIndir(userList.get(position).logo_url, placeholderYap(holder.itemView.context))
-
 }
 
 class RcViewHolder(localItemView: View,
                    private val sprfrg: FragmentManager?) : RecyclerView.ViewHolder(localItemView) {
     fun bind(myDataItem: MyDataItem?) {
-        Log.wtf("Tag Tag Tag", myDataItem.toString())
 
         itemView.apply {
             coinName.text = myDataItem?.name
             coinFiatCurrency.text = myDataItem?.currency
-            Glide.with(itemView.context).load(myDataItem?.logo_url).placeholder(R.drawable.ic_launcher_background).into(coinLogo)
         }
 
         val name = itemView.findViewById<TextView>(R.id.coinName)
@@ -70,9 +66,6 @@ class RcViewHolder(localItemView: View,
         }
 
 
-        //sprfrg?.popBackStack("attach", FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-
         name.apply {
             this.text = myDataItem?.name
         }
@@ -82,7 +75,5 @@ class RcViewHolder(localItemView: View,
         }
 
         Glide.with(itemView.context).load(myDataItem?.logo_url).placeholder(R.drawable.ic_launcher_background).into(logo)
-
-
     }
 }

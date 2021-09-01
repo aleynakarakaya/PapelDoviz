@@ -10,7 +10,7 @@ import com.example.papeldoviz.R
 
 fun ImageView.gorselIndir(url: String?, placeholder: CircularProgressDrawable){
 
-    val options = RequestOptions().placeholder(placeholder).error(R.mipmap.ic_launcher_round)
+    val options = RequestOptions().placeholder(placeholder).error(R.drawable.ic_empty_state)
     Log.wtf("tag",url)
     Glide.with(context).setDefaultRequestOptions(options).load(url).into(this)
 
