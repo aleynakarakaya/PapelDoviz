@@ -13,12 +13,10 @@ import com.example.papeldoviz.R
 import com.example.papeldoviz.`interface`.ApiInterface
 import com.example.papeldoviz.databinding.FragmentDetailBinding
 import com.example.papeldoviz.servis.MyListChartList
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.android.synthetic.main.fragment_detail.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,11 +90,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
                 lineDataSet = LineDataSet(lineList, "Count")
                 lineData = LineData(lineDataSet)
-                lineChart.data = lineData
+                binding?.lineChart?.data = lineData
                 lineDataSet.valueTextColor = Color.BLUE
                 lineDataSet.valueTextSize = 13f
                 lineDataSet.setDrawFilled(true)
-                lineChart.invalidate()
+                binding?.lineChart?.invalidate()
 
 
 
