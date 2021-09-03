@@ -3,9 +3,16 @@ package com.example.papeldoviz.fragment
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -13,15 +20,25 @@ import com.example.papeldoviz.R
 import com.example.papeldoviz.`interface`.ApiInterface
 import com.example.papeldoviz.databinding.FragmentDetailBinding
 import com.example.papeldoviz.servis.MyListChartList
+import com.example.papeldoviz.servis.TryResult
+import com.example.papeldoviz.servis.TryValue
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URL
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
@@ -38,6 +55,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     lateinit var lineDataSet: LineDataSet
     lateinit var lineData: LineData
 
+    private var tryLiveValue: Double? = null
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +70,38 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             this.coinName = it.getString(BUNDLE_COIN_NAME)
             this.coinFiatCurrency = it.getString(BUNDLE_COIN_FIAT_CURRENCY)
         }
+
+        converter()
         getMyLineChart()
+    }
+
+    fun converter() {
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(PackageConstants.TRY_URL)
+            .build()
+            .create(ApiInterface::class.java)
+
+
+
+        val retrofitData = retrofitBuilder.getTRYCurrency()
+
+        retrofitData.enqueue(object : Callback<TryValue> {
+            override fun onResponse(call: Call<TryValue>,
+                                    response: Response<TryValue>) {
+
+                tryLiveValue = response.let {
+                    it.body()?.result?.TRY
+                }
+
+
+
+            }
+
+            override fun onFailure(call: Call<TryValue>, t: Throwable) {
+              //TODO("Not yet implemented")
+            }
+        })
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -74,8 +126,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 lineList.clear()
                 var index: Float = 0f
 
-
-                //burda geliştirmelerin değişmesi gerekecek.
                 response.body()?.get(0)?.prices?.forEach {
                     lineList.add(Entry(
                             index,
@@ -83,10 +133,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     ))
                     index++
                 }
-
-
-
-
 
                 lineDataSet = LineDataSet(lineList, "Count")
                 lineData = LineData(lineDataSet)

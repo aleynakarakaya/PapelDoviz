@@ -1,7 +1,9 @@
 package com.example.papeldoviz.`interface`
 
+import com.example.papeldoviz.fragment.PackageConstants
 import com.example.papeldoviz.servis.MyDataItem
 import com.example.papeldoviz.servis.MyListChartList
+import com.example.papeldoviz.servis.TryValue
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -20,4 +22,7 @@ interface ApiInterface {
         @Query("ids") ids: String,
         @Query("start") start: String,
         ): Call<List<MyListChartList>>
+
+    @GET("${PackageConstants.TRY_URL}/fetch-one?from=USD&to=TRY&api_key=97c84353ae-7d797ffeae-qyui4m")
+    fun getTRYCurrency(): Call<TryValue>
 }

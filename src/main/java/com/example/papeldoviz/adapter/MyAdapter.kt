@@ -46,12 +46,12 @@ class RcViewHolder(localItemView: View,
 
         itemView.apply {
             coinName.text = myDataItem?.name
-            coinFiatCurrency.text = myDataItem?.currency
+            coinFiatCurrency.text = myDataItem?.price
         }
 
         val name = itemView.findViewById<TextView>(R.id.coinName)
         val logo = itemView.findViewById<ImageView>(R.id.coinLogo)
-        val currency = itemView.findViewById<TextView>(R.id.coinFiatCurrency)
+        val price = itemView.findViewById<TextView>(R.id.coinFiatCurrency)
         val layout = itemView.findViewById<CardView>(R.id.cView)
 
         layout.setOnClickListener {
@@ -61,7 +61,7 @@ class RcViewHolder(localItemView: View,
                             coinId = myDataItem?.id,
                             coinLogo = myDataItem?.logo_url,
                             coinName = myDataItem?.name,
-                            coinFiatCurrency = myDataItem?.currency)
+                            coinFiatCurrency = myDataItem?.price)
             )?.addToBackStack(null)?.commit()
         }
 
@@ -70,8 +70,8 @@ class RcViewHolder(localItemView: View,
             this.text = myDataItem?.name
         }
 
-        currency.apply {
-            this.text = myDataItem?.currency
+        price.apply {
+            this.text = myDataItem?.price
         }
 
         Glide.with(itemView.context).load(myDataItem?.logo_url).placeholder(R.drawable.ic_launcher_background).into(logo)

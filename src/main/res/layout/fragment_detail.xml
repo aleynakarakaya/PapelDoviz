@@ -21,21 +21,23 @@
             android:background="?android:attr/colorBackground"
             android:clickable="true"
 
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible">
 
-    <ImageView
-        android:id="@+id/coinLogo2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:foregroundGravity="center"
-        android:padding="16dp"
-        android:layout_margin="64dp"
-        android:minHeight="200dp"
-        android:scaleType="fitCenter" />
+            <ImageView
+                android:id="@+id/coinLogo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="64dp"
+                android:foregroundGravity="center"
+                android:minHeight="200dp"
+                android:padding="16dp"
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/coinName2"
@@ -69,8 +71,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/coinFiatCurrency2"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_below="@+id/lineChart"
+                ></LinearLayout>
 
 
         </RelativeLayout>
