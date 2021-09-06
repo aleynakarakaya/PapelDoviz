@@ -5,37 +5,27 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.papeldoviz.R
 import com.example.papeldoviz.`interface`.ApiInterface
 import com.example.papeldoviz.databinding.FragmentDetailBinding
 import com.example.papeldoviz.servis.MyListChartList
-import com.example.papeldoviz.servis.TryResult
 import com.example.papeldoviz.servis.TryValue
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URL
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
@@ -65,6 +55,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+       // val toolbar = binding?.toolbar as Toolbar
+        //toolbar.setTitle(coinName)
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
 
         arguments?.let {
             this.coinId = it.getString(BUNDLE_COIN_ID)
@@ -98,34 +94,32 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
                 binding?.requestValue?.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {}
-
-                    override fun onTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        before: Int,
-                        count: Int
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
                     ) {
                     }
 
-                    override fun afterTextChanged(s: Editable?) {
+                    override fun onTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            before: Int,
+                            count: Int
+                    ) {
 
                         requestValueLast = requestValue?.text.toString().toDouble()
                         coinFiatCurrencyLast = coinFiatCurrency2?.text.toString().toDouble()
 
                         binding?.switchConvert?.setOnCheckedChangeListener { buttonView, isChecked ->
                             if (isChecked) {
-                                binding?.resultValue?.text = getString(R.string.donusturTers,coinFiatCurrency)
+                                binding?.resultValue?.text = getString(R.string.donusturTers, coinFiatCurrency)
 
                                 result = requestValueLast * coinFiatCurrencyLast * tryLiveValue!!
                                 resultValue.text = getString(R.string.donusturSonucTers, result)
 
                             } else {
-                                binding?.resultValue?.text = getString(R.string.donustur,coinFiatCurrency)
+                                binding?.resultValue?.text = getString(R.string.donustur, coinFiatCurrency)
 
                                 result = (tryLiveValue!! / coinFiatCurrencyLast) / requestValueLast
                                 resultValue.text = getString(R.string.donusturSonuc, result, coinFiatCurrency)
@@ -133,19 +127,21 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
                             }
                         }
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+
+
 
 
                     }
                 })
 
 
-
-
-
             }
 
             override fun onFailure(call: Call<TryValue>, t: Throwable) {
-              //TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
         })
     }
@@ -189,7 +185,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 binding?.lineChart?.invalidate()
 
 
-
             }
 
             override fun onFailure(call: Call<List<MyListChartList>>, t: Throwable) {
@@ -214,6 +209,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         Glide.with(requireContext()).load(this.coinLogoUrl).placeholder(R.drawable.ic_empty_state).into(binding!!.coinLogo2)
         binding!!.coinName2.text = coinName
         binding!!.coinFiatCurrency2.text = coinFiatCurrency
+
+        toolbar.setNavigationIcon(R.drawable.ic_empty_state)
+        toolbar.setNavigationOnClickListener {
+
+        }
     }
     companion object {
         private const val BUNDLE_COIN_ID = "BUNDLE_COIN_ID"
@@ -236,6 +236,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     override fun onDestroyView() {
         binding = null
         super.onDestroyView()
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
     }
 }
 
