@@ -83,7 +83,6 @@ class CustomListFragment : Fragment(R.layout.fragment_list) {
 
     companion object {
         const val BASE_URL = "https://api.nomics.com/v1/"
-        const val TRY_URL = "https://console.fastforex.io/"
     }
 
 }

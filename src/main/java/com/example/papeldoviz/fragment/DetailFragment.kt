@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -56,6 +53,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     lateinit var lineData: LineData
 
     private var tryLiveValue: Double? = null
+    private var requestValueLast: Double = 0.0
+    private var result : Double = 0.0
+    private var coinFiatCurrencyLast : Double = 0.0
+    private var tryLiveValueLast : Double = 0.0
+
 
 
 
@@ -73,6 +75,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         converter()
         getMyLineChart()
+
+
     }
 
     fun converter() {
@@ -81,8 +85,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             .baseUrl(PackageConstants.TRY_URL)
             .build()
             .create(ApiInterface::class.java)
-
-
 
         val retrofitData = retrofitBuilder.getTRYCurrency()
 
@@ -93,6 +95,50 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 tryLiveValue = response.let {
                     it.body()?.result?.TRY
                 }
+
+                binding?.requestValue?.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {}
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+
+                        requestValueLast = requestValue?.text.toString().toDouble()
+                        coinFiatCurrencyLast = coinFiatCurrency2?.text.toString().toDouble()
+
+                        binding?.switchConvert?.setOnCheckedChangeListener { buttonView, isChecked ->
+                            if (isChecked) {
+                                binding?.resultValue?.text = getString(R.string.donusturTers,coinFiatCurrency)
+
+                                result = requestValueLast * coinFiatCurrencyLast * tryLiveValue!!
+                                resultValue.text = getString(R.string.donusturSonucTers, result)
+
+                            } else {
+                                binding?.resultValue?.text = getString(R.string.donustur,coinFiatCurrency)
+
+                                result = (tryLiveValue!! / coinFiatCurrencyLast) / requestValueLast
+                                resultValue.text = getString(R.string.donusturSonuc, result, coinFiatCurrency)
+
+
+                            }
+                        }
+
+
+                    }
+                })
+
+
 
 
 
@@ -121,7 +167,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             override fun onResponse(call: Call<List<MyListChartList>>,
                                     response: Response<List<MyListChartList>>) {
 
-                binding?.relativeLayout?.visibility = View.VISIBLE
+                binding?.consLayout?.visibility = View.VISIBLE
 
                 lineList.clear()
                 var index: Float = 0f
@@ -192,3 +238,5 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onDestroyView()
     }
 }
+
+
