@@ -83,7 +83,7 @@ class LoginFragment : Fragment() {
             }else{
                 // Kullanıcı alanı boş bıraktığında bildirim oluşturuyoruz.
 
-                Toast.makeText(requireContext(),"Boş alanları doldurunuz", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Boş alanları doldurunuz", Toast.LENGTH_LONG).show()
             }
 
         }
@@ -110,7 +110,7 @@ class LoginFragment : Fragment() {
                 if (kullanici != null){
 
                     if(kullanici.isEmailVerified){
-                        Toast.makeText(activity,"Mail onaylandı giriş yapabilirsiniz", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(),"Mail onaylandı giriş yapabilirsiniz", Toast.LENGTH_SHORT).show()
                         var intent= Intent(getActivity(), ListActivity::class.java)
                         activity!!.finish()
                         startActivity(intent)

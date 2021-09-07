@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.RegisterFragment"
-    android:background="#2B2B2E">
+    android:background="@color/white">
 
     <EditText
         android:id="@+id/et_Mail"
@@ -20,9 +20,9 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:backgroundTint="#A5925A"
-        android:textColor="#B7776D15"
-        android:textColorHint="#A5925A"/>
+        android:backgroundTint="#595656"
+        android:textColor="#595656"
+        android:textColorHint="#595656"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -49,8 +49,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.167"
-        android:textColor="#A5925A"
-        android:textColorHint="#A5925A"/>
+        android:textColor="#C5722A"
+        android:textColorHint="#C5722A"/>
 
     <EditText
         android:id="@+id/et_Sifre"
@@ -64,9 +64,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/et_Mail"
         app:layout_constraintTop_toBottomOf="@+id/et_Mail"
-        android:backgroundTint="#A5925A"
-        android:textColor="#B7776D15"
-        android:textColorHint="#A5925A"/>
+        android:backgroundTint="#595656"
+        android:textColor="#595656"
+        android:textColorHint="#595656"/>
 
     <EditText
         android:id="@+id/et_Sifre_Tekrar"
@@ -80,9 +80,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/et_Sifre"
         app:layout_constraintTop_toBottomOf="@+id/et_Sifre"
-        android:backgroundTint="#A5925A"
-        android:textColor="#B7776D15"
-        android:textColorHint="#A5925A"/>
+        android:backgroundTint="#595656"
+        android:textColor="#595656"
+        android:textColorHint="#595656"/>
 
     <Button
         android:id="@+id/btn_Kayit"
@@ -96,6 +96,6 @@
         app:layout_constraintStart_toStartOf="@+id/et_Sifre_Tekrar"
         app:layout_constraintTop_toBottomOf="@+id/et_Sifre_Tekrar"
         app:layout_constraintVertical_bias="0.0"
-        android:backgroundTint="#A5925A"/>
+        android:backgroundTint="@color/yellow"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

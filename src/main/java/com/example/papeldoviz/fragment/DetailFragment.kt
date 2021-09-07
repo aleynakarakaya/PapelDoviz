@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.example.papeldoviz.R
 import com.example.papeldoviz.`interface`.ApiInterface
@@ -20,6 +21,7 @@ import com.example.papeldoviz.servis.TryValue
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -132,8 +134,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     override fun afterTextChanged(s: Editable?) {
 
 
-
-
                     }
                 })
 
@@ -210,8 +210,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         binding!!.coinName2.text = coinName
         binding!!.coinFiatCurrency2.text = coinFiatCurrency
 
-        toolbar.setNavigationIcon(R.drawable.ic_empty_state)
+        toolbar.setNavigationIcon(R.drawable.back)
+        toolbar.setTitle(coinName)
         toolbar.setNavigationOnClickListener {
+
+            val fm: FragmentManager = requireActivity().getSupportFragmentManager()
+            fm.popBackStack("listeFrg", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         }
     }

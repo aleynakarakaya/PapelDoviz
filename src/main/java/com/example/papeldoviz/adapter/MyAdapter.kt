@@ -8,9 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.papeldoviz.R
+import com.example.papeldoviz.fragment.CustomListFragment
 import com.example.papeldoviz.fragment.DetailFragment
 import com.example.papeldoviz.servis.MyDataItem
 import com.example.papeldoviz.util.gorselIndir
@@ -62,7 +64,7 @@ class RcViewHolder(localItemView: View,
                             coinLogo = myDataItem?.logo_url,
                             coinName = myDataItem?.name,
                             coinFiatCurrency = myDataItem?.price)
-            )?.addToBackStack(null)?.commit()
+            )?.addToBackStack("listeFrg")?.commit()
         }
 
 

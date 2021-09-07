@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/logo_p"
+        android:label="PAPEL"
+        android:roundIcon="@mipmap/logo_p"
         android:supportsRtl="true"
         android:theme="@style/Theme.PapelDoviz">
         <activity android:name=".activity.BaseActivity"></activity>

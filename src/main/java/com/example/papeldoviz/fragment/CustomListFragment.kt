@@ -27,9 +27,6 @@ class CustomListFragment : Fragment(R.layout.fragment_list) {
     lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var liste: List<MyDataItem>
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -84,5 +81,4 @@ class CustomListFragment : Fragment(R.layout.fragment_list) {
     companion object {
         const val BASE_URL = "https://api.nomics.com/v1/"
     }
-
 }

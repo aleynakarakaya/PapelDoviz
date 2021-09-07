@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/consLayout"
@@ -15,7 +16,8 @@
         android:background="?android:attr/colorBackground"
         android:clickable="true"
         tools:context=".activity.ListActivity"
-        tools:visibility="visible">
+        tools:visibility="visible"
+        android:backgroundTint="#EDC246">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -24,8 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Home"
-            android:background="@color/black"/>
+            app:titleTextColor="@color/white"/>
 
 
         <LinearLayout
@@ -36,7 +37,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:background="@color/white"
+          >
 
 
             <TextView
@@ -72,7 +75,8 @@
             android:layout_height="500dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+            android:background="@color/white"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -80,6 +84,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="206dp" />
+
+
 
         <TextView
             android:id="@+id/coinName2"
@@ -91,7 +97,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lineChart"
-            tools:text="Coin Name" />
+            tools:text="Coin Name"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/requestValue"
@@ -101,7 +108,9 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coinName2" />
+            app:layout_constraintTop_toBottomOf="@+id/coinName2"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
 
         <Switch
             android:id="@+id/switchConvert"
@@ -117,13 +126,14 @@
             android:id="@+id/resultValue"
             android:layout_width="160dp"
             android:layout_height="80dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/coinName2"
             android:hint="Miktar"
             android:gravity="center"
+            android:textColorHint="@color/white"
 
             />
 

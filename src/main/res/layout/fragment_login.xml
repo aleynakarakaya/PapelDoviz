@@ -5,22 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B2B2E"
+    android:background="#FFFFFF"
     tools:context=".fragment.LoginFragment">
 
     <EditText
         android:id="@+id/et_Mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#A5925A"
+        android:backgroundTint="#595656"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColor="#B7776D15"
-        android:textColorHint="#A5925A"
+        android:textColor="#595656"
+        android:textColorHint="#595656"
         app:layout_constraintBottom_toTopOf="@+id/et_Sifre"
         app:layout_constraintEnd_toStartOf="@+id/progress_Login"
-        app:layout_constraintHorizontal_bias="0.653"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0" />
@@ -51,8 +51,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="#A5925A"
-        android:textColorHint="#A5925A"/>
+        android:backgroundTint="#595656"
+        android:textColorHint="#595656"/>
 
     <TextView
         android:id="@+id/tvKayitOl"
@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_Login"
         app:layout_constraintVertical_bias="1.0"
-        android:textColor="#A5925A"/>
+        android:textColor="#C5722A"/>
 
     <ProgressBar
         android:id="@+id/progress_Login"
@@ -83,12 +83,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="411dp"
-        android:layout_height="372dp"
-        android:layout_marginBottom="308dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="320dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/doviz" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_p" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
