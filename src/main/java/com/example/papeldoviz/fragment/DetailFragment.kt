@@ -45,20 +45,16 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     lateinit var lineData: LineData
 
     private var tryLiveValue: Double? = null
-    private var requestValueLast: Double = 0.0
-    private var result : Double = 0.0
-    private var coinFiatCurrencyLast : Double = 0.0
-    private var tryLiveValueLast : Double = 0.0
-
-
-
+    private var requestValueLast: Double? = 0.0
+    private var result: Double? = 0.0
+    private var coinFiatCurrencyLast: Double? = 0.0
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       // val toolbar = binding?.toolbar as Toolbar
+        // val toolbar = binding?.toolbar as Toolbar
         //toolbar.setTitle(coinName)
 
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
@@ -87,8 +83,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val retrofitData = retrofitBuilder.getTRYCurrency()
 
         retrofitData.enqueue(object : Callback<TryValue> {
-            override fun onResponse(call: Call<TryValue>,
-                                    response: Response<TryValue>) {
+            override fun onResponse(
+                call: Call<TryValue>,
+                response: Response<TryValue>
+            ) {
 
                 tryLiveValue = response.let {
                     it.body()?.result?.TRY
@@ -96,44 +94,62 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
                 binding?.requestValue?.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            count: Int,
-                            after: Int
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
                     ) {
                     }
 
                     override fun onTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            before: Int,
-                            count: Int
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
                     ) {
-
-                        requestValueLast = requestValue?.text.toString().toDouble()
-                        coinFiatCurrencyLast = coinFiatCurrency2?.text.toString().toDouble()
-
-                        binding?.switchConvert?.setOnCheckedChangeListener { buttonView, isChecked ->
-                            if (isChecked) {
-                                binding?.resultValue?.text = getString(R.string.donusturTers, coinFiatCurrency)
-
-                                result = requestValueLast * coinFiatCurrencyLast * tryLiveValue!!
-                                resultValue.text = getString(R.string.donusturSonucTers, result)
-
-                            } else {
-                                binding?.resultValue?.text = getString(R.string.donustur, coinFiatCurrency)
-
-                                result = (tryLiveValue!! / coinFiatCurrencyLast) / requestValueLast
-                                resultValue.text = getString(R.string.donusturSonuc, result, coinFiatCurrency)
+                        if (requestValue.text.isNullOrEmpty() && requestValue.text.isBlank() && count == 0) {
+                            resultValue.text = BLANK
+                        } else {
 
 
+                            requestValueLast = requestValue?.text.toString().toDouble()
+                            coinFiatCurrencyLast = coinFiatCurrency2?.text.toString().toDouble()
+
+                            binding?.switchConvert?.setOnCheckedChangeListener { buttonView, isChecked ->
+                                if (isChecked) {
+                                    binding?.resultValue?.text =
+                                        getString(R.string.donustur, coinFiatCurrency)
+
+                                    result = (tryLiveValue?.div(coinFiatCurrencyLast!!))?.div(
+                                        requestValueLast!!
+                                    )
+                                    resultValue.text =
+                                        getString(R.string.donusturSonuc, result, coinFiatCurrency)
+
+                                } else {
+
+                                    binding?.resultValue?.text =
+                                        getString(R.string.donusturTers, coinFiatCurrency)
+
+                                    result =
+                                        requestValueLast!! * coinFiatCurrencyLast!! * tryLiveValue!!
+                                    resultValue.text = getString(R.string.donusturSonucTers, result)
+
+                                }
                             }
                         }
                     }
 
                     override fun afterTextChanged(s: Editable?) {
+                        if (requestValue.text.isNullOrEmpty() && requestValue.text.isBlank()) {
+                            resultValue.text = BLANK
+                        } else {
+                            binding?.resultValue?.text =
+                                getString(R.string.donusturTers, coinFiatCurrency)
 
-
+                            result = requestValueLast!! * coinFiatCurrencyLast!! * tryLiveValue!!
+                            resultValue.text = getString(R.string.donusturSonucTers, result)
+                        }
                     }
                 })
 
@@ -149,10 +165,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getMyLineChart() {
         val retrofitBuilder = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(CustomListFragment.BASE_URL)
-                .build()
-                .create(ApiInterface::class.java)
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(CustomListFragment.BASE_URL)
+            .build()
+            .create(ApiInterface::class.java)
 
         var dateTime = LocalDateTime.now()
         var newwDate = dateTime.minusDays(30)
@@ -160,8 +176,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         val retrofitData = retrofitBuilder.getLineChart(coinId!!, newDate.toString())
         retrofitData.enqueue(object : Callback<List<MyListChartList>> {
-            override fun onResponse(call: Call<List<MyListChartList>>,
-                                    response: Response<List<MyListChartList>>) {
+            override fun onResponse(
+                call: Call<List<MyListChartList>>,
+                response: Response<List<MyListChartList>>
+            ) {
 
                 binding?.consLayout?.visibility = View.VISIBLE
 
@@ -169,10 +187,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 var index: Float = 0f
 
                 response.body()?.get(0)?.prices?.forEach {
-                    lineList.add(Entry(
+                    lineList.add(
+                        Entry(
                             index,
                             it.toFloat()
-                    ))
+                        )
+                    )
                     index++
                 }
 
@@ -194,8 +214,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         //container?.removeAllViews()
         // Inflate the layout for this fragment
@@ -206,7 +226,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailBinding.bind(view)
 
-        Glide.with(requireContext()).load(this.coinLogoUrl).placeholder(R.drawable.ic_empty_state).into(binding!!.coinLogo2)
+        Glide.with(requireContext()).load(this.coinLogoUrl).placeholder(R.drawable.ic_empty_state)
+            .into(binding!!.coinLogo2)
         binding!!.coinName2.text = coinName
         binding!!.coinFiatCurrency2.text = coinFiatCurrency
 
@@ -219,14 +240,21 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         }
     }
+
     companion object {
+        private const val BLANK = ""
         private const val BUNDLE_COIN_ID = "BUNDLE_COIN_ID"
         private const val BUNDLE_COIN_LOGO = "BUNDLE_COIN_LOGO"
         private const val BUNDLE_COIN_NAME = "BUNDLE_COIN_NAME"
         private const val BUNDLE_COIN_FIAT_CURRENCY = "BUNDLE_COIN_FIAT_CURRENCY"
 
 
-        fun newInstance(coinId: String?, coinLogo: String?, coinName: String?, coinFiatCurrency: String?) = DetailFragment().apply {
+        fun newInstance(
+            coinId: String?,
+            coinLogo: String?,
+            coinName: String?,
+            coinFiatCurrency: String?
+        ) = DetailFragment().apply {
             arguments = Bundle().apply {
                 coinId?.let { putString(BUNDLE_COIN_ID, it) }
                 coinLogo?.let { putString(BUNDLE_COIN_LOGO, it) }
