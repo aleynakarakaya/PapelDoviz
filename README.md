@@ -10,7 +10,7 @@ The app written in Kotlin. Coin's values pulled from Nomics and TRY value of dol
 
 Sign-in / Sign-up / Sign-out
 
-USD values of crypto currincies
+USD values of crypto currencies
 
 Conversion between TRY and coin
 
