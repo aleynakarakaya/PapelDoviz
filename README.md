@@ -27,7 +27,6 @@ MpAndroidChart
 
 Glide
 
-Gson
 
 ## Authors
 
