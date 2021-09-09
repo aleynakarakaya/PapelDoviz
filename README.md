@@ -34,4 +34,4 @@ Glide
 
 ## Preview
 
-https://www.youtube.com/watch?v=OIRzKyxwEcg
+https://youtu.be/dpQ0GuJYwRo
