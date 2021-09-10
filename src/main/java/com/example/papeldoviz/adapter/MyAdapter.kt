@@ -1,6 +1,8 @@
 package com.example.papeldoviz.adapter
 
 import android.content.Context
+import android.icu.number.NumberFormatter.with
+import android.icu.number.NumberRangeFormatter.with
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +12,17 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.GenericTransitionOptions.with
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.with
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with
 import com.example.papeldoviz.R
 import com.example.papeldoviz.fragment.CustomListFragment
 import com.example.papeldoviz.fragment.DetailFragment
 import com.example.papeldoviz.servis.MyDataItem
 import com.example.papeldoviz.util.gorselIndir
+import com.example.papeldoviz.util.loadUrl
 import com.example.papeldoviz.util.placeholderYap
 import kotlinx.android.synthetic.main.row_item.view.*
 
@@ -39,6 +46,10 @@ class MyAdapter(
     override fun onBindViewHolder(holder: RcViewHolder, position: Int) {
         holder.bind(userList[position])
         holder.itemView.coinLogo?.gorselIndir(userList.get(position).logo_url, placeholderYap(holder.itemView.context))
+        holder.itemView.coinLogo.loadUrl(userList.get(position).logo_url!!)
+
+
+
     }
 }
 
@@ -76,6 +87,10 @@ class RcViewHolder(localItemView: View,
             this.text = myDataItem?.price
         }
 
-        Glide.with(itemView.context).load(myDataItem?.logo_url).placeholder(R.drawable.ic_launcher_background).into(logo)
+        //Glide.with(itemView.context).load(myDataItem?.logo_url).placeholder(R.drawable.ic_launcher_background).into(logo)
+
+
+
+
     }
 }

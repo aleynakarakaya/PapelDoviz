@@ -3,7 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donusturSonucTers"> %1$f TRY </string>
-    <string name="donusturSonuc"> %2$s birim </string>
+    <string name="donusturSonuc"> %2$s coin </string>
+    <string name="cevir">İşlemi ters çevir</string>
     <string name="donustur">Elinizdeki para kaç %1$s öğrenin! </string>
     <string name="donusturTers">Elinizdeki %1$s kaç para ediyor öğrenin! </string>
 </resources>

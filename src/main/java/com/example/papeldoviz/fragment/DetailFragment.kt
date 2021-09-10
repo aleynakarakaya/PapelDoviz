@@ -18,11 +18,15 @@ import com.example.papeldoviz.`interface`.ApiInterface
 import com.example.papeldoviz.databinding.FragmentDetailBinding
 import com.example.papeldoviz.servis.MyListChartList
 import com.example.papeldoviz.servis.TryValue
+import com.example.papeldoviz.util.loadUrl
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.row_item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,6 +52,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private var requestValueLast: Double? = 0.0
     private var result: Double? = 0.0
     private var coinFiatCurrencyLast: Double? = 0.0
+
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -226,10 +232,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailBinding.bind(view)
 
-        Glide.with(requireContext()).load(this.coinLogoUrl).placeholder(R.drawable.ic_empty_state)
-            .into(binding!!.coinLogo2)
+        /*Glide.with(requireContext()).load(this.coinLogoUrl).placeholder(R.drawable.ic_empty_state)
+            .into(binding!!.coinLogo2)*/
         binding!!.coinName2.text = coinName
         binding!!.coinFiatCurrency2.text = coinFiatCurrency
+           view.coinLogo2.loadUrl(this.coinLogoUrl!!)
 
         toolbar.setNavigationIcon(R.drawable.back)
         toolbar.setTitle(coinName)
@@ -237,6 +244,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
             val fm: FragmentManager = requireActivity().getSupportFragmentManager()
             fm.popBackStack("listeFrg", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
 
         }
     }
