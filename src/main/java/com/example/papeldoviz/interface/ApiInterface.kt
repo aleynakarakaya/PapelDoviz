@@ -23,6 +23,6 @@ interface ApiInterface {
         @Query("start") start: String,
         ): Call<List<MyListChartList>>
 
-    @GET("${PackageConstants.TRY_URL}/fetch-one?from=USD&to=TRY&api_key=97c84353ae-7d797ffeae-qyui4m")
+    @GET("${PackageConstants.TRY_URL}/fetch-one?from=USD&to=TRY&api_key=78b23326a0-6b98726861-qzdfmb")
     fun getTRYCurrency(): Call<TryValue>
 }

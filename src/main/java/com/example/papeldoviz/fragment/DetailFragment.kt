@@ -137,8 +137,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                                     binding?.resultValue?.text =
                                         getString(R.string.donusturTers, coinFiatCurrency)
 
-                                    result =
-                                        requestValueLast!! * coinFiatCurrencyLast!! * tryLiveValue!!
+                                    result = (tryLiveValue?.times(coinFiatCurrencyLast!!))?.times(requestValueLast!!)
                                     resultValue.text = getString(R.string.donusturSonucTers, result)
 
                                 }
@@ -153,7 +152,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                             binding?.resultValue?.text =
                                 getString(R.string.donusturTers, coinFiatCurrency)
 
-                            result = requestValueLast!! * coinFiatCurrencyLast!! * tryLiveValue!!
+                            result = (tryLiveValue?.times(coinFiatCurrencyLast!!))?.times(requestValueLast!!)
                             resultValue.text = getString(R.string.donusturSonucTers, result)
                         }
                     }
